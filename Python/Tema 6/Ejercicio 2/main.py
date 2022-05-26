@@ -19,13 +19,19 @@ class Alumno:
         else:
             return False
 
+def print_notas_alumnos(alumnos):
+    for alumno in alumnos:
+        if alumno.is_aprobado():
+            print(f"{alumno.get_nombre()} ha aprobado con un {alumno.get_nota()}")
+        else:
+            print(f"{alumno.get_nombre()} ha suspendido con un {alumno.get_nota()}")
+
+
+
 alumno1 = Alumno("María Pérez Hernandez", 7)
 alumno2 = Alumno("José Rodríguez Casas", 3)
 alumno3 = Alumno("Fernando Miguel Ortíz", 8)
 alumnos = [alumno1, alumno2, alumno3]
 
-for alumno in alumnos:
-    if alumno.is_aprobado():
-        print(f"{alumno.get_nombre()} ha aprobado con un {alumno.get_nota()}")
-    else:
-        print(f"{alumno.get_nombre()} ha suspendido con un {alumno.get_nota()}")
+print_notas_alumnos(alumnos)
+
