@@ -1,6 +1,4 @@
 
-
-
 def main():
     entrada = input("Introduzca los países separados por coma: ")
     paises = set(entrada.split(','))
