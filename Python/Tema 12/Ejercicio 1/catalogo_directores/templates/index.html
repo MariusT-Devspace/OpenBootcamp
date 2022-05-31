@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    {% for director in lista_directores %}
+        <section class="director-container mb-5 pt-5">
+            <h3>{{director}}</h3> <br>
+            <h5>Películas</h5>
+            {% block peliculas %}
+            {% endblock peliculas %}
+        </section>
+    {% endfor %}
+{% endblock content %}

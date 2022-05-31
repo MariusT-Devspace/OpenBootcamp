@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block peliculas %}
+    <div class="row">
+        {% for pelicula in director.peliculas.all %}
+            <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 mt-3">
+                <div class="card card-pelicula h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title">{{pelicula.título}}</h5>
+                            <span>{{pelicula.año}}</span>
+                        </div>
+                        <p class="card-text mt-3">{{pelicula.sinopsis}}</p>
+                    </div>
+                </div>  
+            </div> 
+        {% endfor %}   
+    </div>
+    
+{% endblock peliculas %}
