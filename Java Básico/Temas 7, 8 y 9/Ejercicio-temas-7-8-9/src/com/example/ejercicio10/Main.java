@@ -11,12 +11,12 @@ import java.util.*;
 public class Main {
     public static String contactsCSV = "contacts.csv";
     public static ArrayList<Contact> contacts;
-
+    public static BufferedInputStream buffIn;
     public static void main(String[] args){
         try{
             // Load and sort contacts
             InputStream in = new FileInputStream(contactsCSV);
-            BufferedInputStream buffIn = new BufferedInputStream(in);
+            buffIn = new BufferedInputStream(in);
             ContactsCrudCSV contactsCrud = new ContactsCrudCSV();
             contacts = contactsCrud.loadContacts(buffIn);
             contacts.sort(Comparator.comparing(Contact::getFirstName).thenComparing(Contact::getLastName));
@@ -61,7 +61,7 @@ public class Main {
             System.out.println();
             if (searchContact >= 0) {
                 System.out.println("Search " + nameToSearch.get("First Name") + " " + nameToSearch.get("Last Name") + ":");
-                System.out.println(searchContact);
+                System.out.println(contacts.get(searchContact));
             }else{
                 System.out.println("Contact not found!");
             }
@@ -99,6 +99,7 @@ public class Main {
             }else{
                 System.out.println("Contact not found!");
             }
+            buffIn.close();
         }catch(FileNotFoundException fnfe){
             System.out.println("Error: File not found!");
         }catch(IOException ioe){
