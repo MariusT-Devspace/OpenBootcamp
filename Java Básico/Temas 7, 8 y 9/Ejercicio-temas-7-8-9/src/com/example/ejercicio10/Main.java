@@ -47,7 +47,7 @@ public class Main {
             contactsCrud.createContact(newContact);
             // Check contact is inserted successfully
             int contactCreated = contactsCrud.searchContact(newContactName);
-            if (contactCreated != -1) {
+            if (contactCreated >= 0) {
                 System.out.println(contacts.get(contactCreated).toString());
             }else{
                 System.out.println("Contact not found!");
@@ -59,9 +59,9 @@ public class Main {
             nameToSearch.put("Last Name", "Morasca");
             int searchContact = contactsCrud.searchContact(nameToSearch);
             System.out.println();
-            if (searchContact != -1) {
+            if (searchContact >= 0) {
                 System.out.println("Search " + nameToSearch.get("First Name") + " " + nameToSearch.get("Last Name") + ":");
-                System.out.println(contacts.get(searchContact).toString());
+                System.out.println(searchContact);
             }else{
                 System.out.println("Contact not found!");
             }
@@ -73,7 +73,7 @@ public class Main {
             nameToEdit.put("Last Name", "Petrucci");
             int idToEdit = contactsCrud.searchContact(nameToEdit);
             System.out.println();
-            if (idToEdit != -1) {
+            if (idToEdit >= 0) {
                 System.out.println("Contact to edit:");
                 System.out.println(contacts.get(idToEdit));
                 String[] fieldsToEdit = {"Last Name", "phone2"};
@@ -91,9 +91,9 @@ public class Main {
             nameToDelete.put("Last Name", "Morasca");
             int idToDelete = contactsCrud.searchContact(nameToDelete);
             System.out.println();
-            if (idToDelete != -1) {
+            if (idToDelete >= 0) {
                 System.out.println("Contact to delete:");
-                System.out.println(contacts.get(searchContact).toString());
+                System.out.println(contacts.get(idToDelete));
                 System.out.println();
                 contactsCrud.deleteContact(idToDelete);
             }else{

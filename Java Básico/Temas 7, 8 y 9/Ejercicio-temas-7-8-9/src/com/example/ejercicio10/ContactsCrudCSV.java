@@ -102,7 +102,7 @@ public class ContactsCrudCSV implements ContactsCRUD {
     /**
      * This method searches for a contact by name.
      * @param name  HashMap containing first and last name, used to search the contact
-     * @return contact index if found, otherwise -1
+     * @return contact index if found, otherwise will return < 0
      */
     @Override
     public int searchContact(Map<String, String> name) {
