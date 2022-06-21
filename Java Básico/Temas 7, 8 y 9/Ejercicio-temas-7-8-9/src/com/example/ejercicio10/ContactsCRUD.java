@@ -7,7 +7,6 @@ import java.util.Map;
 
 public interface ContactsCRUD {
 
-    ArrayList<Contact> loadContacts(BufferedInputStream buffIn) throws IOException;
     void createContact(Contact contact) throws IOException;
     int searchContact(Map<String, String> name);
     int editContact(int idToEdit, String[] fieldsToEdit, String[] newValues);

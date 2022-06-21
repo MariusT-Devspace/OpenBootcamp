@@ -15,7 +15,6 @@ public class ContactsCrudCSV implements ContactsCRUD {
      * @return ArrayList loaded with contacts
      * @throws IOException
      */
-    @Override
     public ArrayList<Contact> loadContacts(BufferedInputStream buffIn) throws IOException {
         ArrayList<Contact> contacts= new ArrayList<>();
         ArrayList<String> fieldNames = new ArrayList<>();
