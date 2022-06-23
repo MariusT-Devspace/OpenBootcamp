@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elementos de Interés en Bootstrap</title>
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+    crossorigin="anonymous">
+</head>
+<body>
+    <main class="px-5">
+        <section class="container mt-3">
+            <!-- Jumbotron-->
+            <div class="bg-light p-5 rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Custom jumbotron</h1>
+                    <p class="col-md-8 fs-4">
+                        Using a series of utilities, you can create this jumbotron, 
+                        just like the one in previous versions of Bootstrap. 
+                        Check out the examples below for how you can remix and style
+                        it to your liking.
+                    </p>
+                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Open modal
+                    </button>
+                </div>
+            </div>
+    
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal example</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        This is an example of a modal using Bootstrap.
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    
+    
+        <section class="container mt-5 d-flex flex-column align-items-center">
+
+            <form class="w-100 d-flex flex-column align-items-stretch g-3">
+                <div class="row g-3 d-flex flex-row justify-content-center mb-3">
+                    <div class="col-12 col-md-6 col-lg-5 col-xl-4 form-floating">
+                      <input type="text" class="form-control" id="name" placeholder="Name" aria-label="Name">
+                      <label for="name">Name</label>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-5 col-xl-4 form-floating">
+                        <input type="number" class="form-control" id="phone-number" placeholder="Name" aria-label="Name">
+                        <label for="phone-number">Phone number</label>
+                    </div>
+                </div>
+                <div class="row d-flex flex-row justify-content-around">
+                    <div class="col-12 col-md-12 col-lg-10 col-xl-8 form-floating">
+                        <textarea class="form-control" placeholder="Leave a message here" id="message"></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                </div>
+                
+                
+            </form>
+
+        </section>
+    
+        
+        <section class="mx-2 mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-4 mx-auto">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Marius Tichieru</h5>
+                      <p class="card-text">Desarrollador junior con titulación FP en Desarrollo de Aplicaciones Web. 
+                        Un año de experiencia en programación backend en PL/1 y SQL + 3 meses en front end.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">mariustichieru@gmail.com</small>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </section>
+    
+    </main>
+    
+    <!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
