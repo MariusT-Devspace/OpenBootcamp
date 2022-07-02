@@ -1,7 +1,7 @@
 ﻿
 int a = 21;
-bool es_mayor_o_igual = a >= 18;
-if (es_mayor_o_igual)
+bool esMayorOIgual = a >= 18;
+if (esMayorOIgual)
 {
     Console.WriteLine($"{a} es mayor o igual que 18");
 }
@@ -12,9 +12,9 @@ else
 
 
 char c = 'f';
-bool es_a = c == 'a';
+bool isA = c == 'a';
 Console.WriteLine();
-if (es_a)
+if (isA)
 {
     Console.WriteLine($"'{c}' es igual a 'a'");
 }
@@ -25,11 +25,11 @@ else
 
 
 Console.WriteLine();
-if (es_mayor_o_igual && es_a)
+if (esMayorOIgual && isA)
 {
     Console.WriteLine("Se cumplen las condiciones!");
 }
-else if(es_mayor_o_igual || es_a)
+else if(esMayorOIgual || isA)
 {
     Console.WriteLine("Se cumple sólo una condición");
 }
