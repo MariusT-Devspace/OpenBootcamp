@@ -1,28 +1,28 @@
 ﻿
 // Coche:
-int puertas_coche = 3;
-int ruedas_coche = 4;
-string marca_coche = "Ford";
-bool ITV_vigente = true;
+int puertasCoche = 3;
+int ruedasCoche = 4;
+string marcaCoche = "Ford";
+bool ItvVigente = true;
 
 Console.WriteLine("Coche:");
 Console.WriteLine();
-Console.WriteLine($"Marca: {marca_coche}");
-Console.WriteLine($"Puertas: {puertas_coche}");
-Console.WriteLine($"Ruedas: {ruedas_coche}");
-Console.WriteLine($"ITV vigente: {ITV_vigente}");
+Console.WriteLine($"Marca: {marcaCoche}");
+Console.WriteLine($"Puertas: {puertasCoche}");
+Console.WriteLine($"Ruedas: {ruedasCoche}");
+Console.WriteLine($"ITV vigente: {ItvVigente}");
 
 // Mesa:
-int peso_mesa_kg = 100;
-int largo_mesa_cm = 230;
-string material_mesa = "Madera";
-string color_mesa = "Marrón";
+int pesoMesaKg = 100;
+int largoMesaCm = 230;
+string materialMesa = "Madera";
+string colorMesa = "Marrón";
 
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("Mesa:");
 Console.WriteLine();
-Console.WriteLine($"Peso: {peso_mesa_kg} kg");
-Console.WriteLine($"Largo: {largo_mesa_cm} cm");
-Console.WriteLine($"Material: {material_mesa}");
-Console.WriteLine($"Color: {color_mesa}");
+Console.WriteLine($"Peso: {pesoMesaKg} kg");
+Console.WriteLine($"Largo: {largoMesaCm} cm");
+Console.WriteLine($"Material: {materialMesa}");
+Console.WriteLine($"Color: {colorMesa}");
