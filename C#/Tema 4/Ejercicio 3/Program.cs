@@ -40,7 +40,13 @@ else
 }
 
 Console.WriteLine("Número de figuras para dibujar");
-int numFiguras = Convert.ToInt32(Console.ReadLine());
+int numFiguras;
+bool numFigurasParse = int.TryParse(Console.ReadLine(), out numFiguras);
+while (numFigurasParse == false)
+{
+    Console.WriteLine("Por favor, escribe un número");
+    numFigurasParse = int.TryParse(Console.ReadLine(), out numFiguras);
+}
 
 // Dibuja figuras
 int numEspacioEntreFiguras = 6;
