@@ -1,9 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UniversityApiBackend.Models.DataModels
 {
     public class Course: BaseEntity
     {
+        public enum CourseLevel
+        {
+            Básico = 1,
+            Intermedio,
+            Avanzado
+        }
+
         [Required, StringLength(50)]
         public string Name { get; set; } = string.Empty;
 
@@ -18,12 +26,7 @@ namespace UniversityApiBackend.Models.DataModels
 
         public string? Requirements { get; set; }
 
-        public enum Level
-        {
-            Básico = 1,
-            Intermedio,
-            Avanzado
-        }
+        public CourseLevel? Level { get; set; }
 
     }
 }

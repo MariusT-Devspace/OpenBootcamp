@@ -12,7 +12,7 @@ using UniversityApiBackend.DataAccess;
 namespace UniversityApiBackend.Migrations
 {
     [DbContext(typeof(UniversityDBContext))]
-    [Migration("20220814184231_Create Courses table")]
+    [Migration("20220814225013_Create Courses table")]
     partial class CreateCoursestable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,9 @@ namespace UniversityApiBackend.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Level")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LongDescription")
                         .HasColumnType("nvarchar(max)");

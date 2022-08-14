@@ -50,6 +50,9 @@ namespace UniversityApiBackend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Level")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LongDescription")
                         .HasColumnType("nvarchar(max)");
 
