@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UniversityApiBackend.Models.DataModels
+namespace QueriesExercise
 {
-    public class Course: BaseEntity
+    public class Course
     {
         public enum CourseLevel
         {
@@ -34,7 +34,7 @@ namespace UniversityApiBackend.Models.DataModels
      
         [Required]
         public ICollection<Student> Students { get; set; } = new List<Student>();
-        
+
         [Required]
         public virtual Syllabus Syllabus { get; set; } = new Syllabus();
     }

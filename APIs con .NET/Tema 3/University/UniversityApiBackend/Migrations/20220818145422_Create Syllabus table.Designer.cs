@@ -12,7 +12,7 @@ using UniversityApiBackend.DataAccess;
 namespace UniversityApiBackend.Migrations
 {
     [DbContext(typeof(UniversityDBContext))]
-    [Migration("20220817112224_Create Syllabus table")]
+    [Migration("20220818145422_Create Syllabus table")]
     partial class CreateSyllabustable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,10 +190,6 @@ namespace UniversityApiBackend.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

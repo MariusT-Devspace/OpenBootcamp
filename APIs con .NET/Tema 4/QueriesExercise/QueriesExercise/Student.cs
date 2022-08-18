@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UniversityApiBackend.Models.DataModels
+namespace QueriesExercise
 {
-    public class Student: BaseEntity
+    public class Student
     {
+        [Required]
+        public string Name { get; set; } = string.Empty;
+
         [Required]
         public string FirstName { get; set; } = string.Empty;
 
