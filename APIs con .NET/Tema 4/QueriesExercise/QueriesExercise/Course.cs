@@ -13,10 +13,8 @@ namespace QueriesExercise
             Expert
         }
 
-        [Required, StringLength(50)]
         public string Name { get; set; } = string.Empty;
 
-        [Required, StringLength(280)]
         public string? ShortDescription { get; set; }
 
         public string? LongDescription { get; set; }
@@ -29,13 +27,8 @@ namespace QueriesExercise
 
         public CourseLevel? Level { get; set; }
 
-        [Required]
         public ICollection<Category> Categories { get; set; } = new List<Category>();
      
-        [Required]
         public ICollection<Student> Students { get; set; } = new List<Student>();
-
-        [Required]
-        public virtual Syllabus Syllabus { get; set; } = new Syllabus();
     }
 }

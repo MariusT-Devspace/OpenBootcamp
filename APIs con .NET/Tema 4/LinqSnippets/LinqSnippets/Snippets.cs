@@ -20,7 +20,7 @@ namespace LinqSnippets
                 "Seat León"
             };
 
-            // 1. SELECT * of cars
+            // 1. SELECT * from cars
             var carList = from car in cars select car;
             
             foreach (var car in carList)
@@ -168,7 +168,7 @@ namespace LinqSnippets
             // Obtain all Employees of all Enterprises
             var employeeList = enterprises.SelectMany(enterprise => enterprise.Employees);
 
-            // Know if ana list is empty
+            // Know if any list is empty
             bool hasEnterprises = enterprises.Any();
 
             bool hasEmployee = enterprises.Any(enterprise => enterprise.Employees.Any());
