@@ -1,0 +1,17 @@
+{
+  "name": "tema-1",
+  "version": "1.0.0",
+  "description": "Ejercicio Tema 1",
+  "main": "index.js",
+  "scripts": {
+    "saluda": "node index.js"
+  },
+  "keywords": [
+    "hola",
+    "mundo",
+    "first",
+    "project"
+  ],
+  "author": "Marius",
+  "license": "ISC"
+}
