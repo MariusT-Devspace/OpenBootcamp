@@ -4,6 +4,9 @@
   "description": "Lesson 3 exercise",
   "main": "index.js",
   "scripts": {
+    "factorial-for": "node factorial-for.js",
+    "factorial-while": "node factorial-while.js",
+    "factorial-break": "node factorial-break.js"
   },
   "author": "Marius",
   "license": "ISC"
