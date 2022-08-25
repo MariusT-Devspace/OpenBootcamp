@@ -1,0 +1,10 @@
+{
+  "name": "tema-3",
+  "version": "1.0.0",
+  "description": "Lesson 3 exercise",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Marius",
+  "license": "ISC"
+}
