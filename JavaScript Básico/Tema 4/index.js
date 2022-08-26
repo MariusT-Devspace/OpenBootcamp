@@ -1,6 +1,6 @@
 
 const firstName = "Marius";
-const lastName = "Tichieru";
+const lastName = "Dev";
 const student = firstName + " " + lastName;
 const studentUpper = student.toUpperCase();
 const studentLower = student.toLowerCase();
