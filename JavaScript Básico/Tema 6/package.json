@@ -1,0 +1,19 @@
+{
+  "name": "tema-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "javascript",
+    "lesson",
+    "nodejs",
+    "beginner",
+    "learning",
+    "openbootcamp"
+  ],
+  "author": "",
+  "license": "ISC"
+}
