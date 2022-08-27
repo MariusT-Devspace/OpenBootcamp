@@ -1,0 +1,14 @@
+{
+  "name": "tema-7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "conjuntos": "node conjuntos.js",
+    "objetos": "node objetos.js",
+    "fechas": "node fechas.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
