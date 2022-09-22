@@ -1,0 +1,17 @@
+{
+  "name": "tema-4",
+  "version": "1.0.0",
+  "description": "Ejercicio Tema 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "javascript",
+    "strings",
+    "lesson",
+    "beginner"
+  ],
+  "author": "Marius",
+  "license": "ISC"
+}

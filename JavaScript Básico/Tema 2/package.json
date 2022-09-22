@@ -1,0 +1,17 @@
+{
+  "name": "tema-2",
+  "version": "1.0.0",
+  "description": "Lesson 2 Exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Javascript",
+    "types",
+    "exercise",
+    "beginner"
+  ],
+  "author": "Marius",
+  "license": "ISC"
+}

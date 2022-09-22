@@ -1,0 +1,36 @@
+.section {
+    background-color: darkslategrey;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.paragraph {
+    background-color: white;
+    padding: 1rem;
+}
+
+.dragging {
+    opacity: 0.3;
+}
+
+.ghost-element {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    position: absolute;
+    left: -100vw;
+}
+
+#bin-container {
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    top: 780px;
+    width: 100vw;
+    position: absolute;
+}
+
+#bin {
+    width: 80px;
+    margin-right: 130px;
+}
