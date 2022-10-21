@@ -12,14 +12,14 @@ using UniversityApiBackend.DataAccess;
 namespace UniversityApiBackend.Migrations
 {
     [DbContext(typeof(UniversityDBContext))]
-    [Migration("20220818145312_Create Students table")]
-    partial class CreateStudentstable
+    [Migration("20221020152908_Fix SyllabusId nullable")]
+    partial class FixSyllabusIdnullable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -123,8 +123,8 @@ namespace UniversityApiBackend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Level")
+                        .HasColumnType("int");
 
                     b.Property<string>("LongDescription")
                         .HasColumnType("nvarchar(max)");
@@ -142,6 +142,9 @@ namespace UniversityApiBackend.Migrations
                         .HasMaxLength(280)
                         .HasColumnType("nvarchar(280)");
 
+                    b.Property<int?>("SyllabusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TargetAudience")
                         .HasColumnType("nvarchar(max)");
 
@@ -153,6 +156,8 @@ namespace UniversityApiBackend.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SyllabusId");
 
                     b.ToTable("Courses");
                 });
@@ -203,6 +208,47 @@ namespace UniversityApiBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Syllabus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("List")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Syllabus");
                 });
 
             modelBuilder.Entity("UniversityApiBackend.Models.DataModels.User", b =>
@@ -288,6 +334,15 @@ namespace UniversityApiBackend.Migrations
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Course", b =>
+                {
+                    b.HasOne("UniversityApiBackend.Models.DataModels.Syllabus", "Syllabus")
+                        .WithMany()
+                        .HasForeignKey("SyllabusId");
+
+                    b.Navigation("Syllabus");
                 });
 #pragma warning restore 612, 618
         }

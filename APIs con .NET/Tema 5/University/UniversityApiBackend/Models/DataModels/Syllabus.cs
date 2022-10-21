@@ -1,14 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UniversityApiBackend.Models.DataModels
 {
     public class Syllabus: BaseEntity {
-
-        public int CourseId { get; set; }
-
-        public virtual Course Course { get; set; } = new Course();
-
         [Required]
-        public string List = string.Empty;
+        public string List { get; set; } = string.Empty;
     }
 }

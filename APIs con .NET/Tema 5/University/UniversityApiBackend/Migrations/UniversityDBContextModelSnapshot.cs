@@ -17,7 +17,7 @@ namespace UniversityApiBackend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -121,8 +121,8 @@ namespace UniversityApiBackend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Level")
+                        .HasColumnType("int");
 
                     b.Property<string>("LongDescription")
                         .HasColumnType("nvarchar(max)");
@@ -140,6 +140,9 @@ namespace UniversityApiBackend.Migrations
                         .HasMaxLength(280)
                         .HasColumnType("nvarchar(280)");
 
+                    b.Property<int?>("SyllabusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TargetAudience")
                         .HasColumnType("nvarchar(max)");
 
@@ -151,6 +154,8 @@ namespace UniversityApiBackend.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SyllabusId");
 
                     b.ToTable("Courses");
                 });
@@ -211,9 +216,6 @@ namespace UniversityApiBackend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -231,6 +233,10 @@ namespace UniversityApiBackend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("List")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -239,9 +245,6 @@ namespace UniversityApiBackend.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId")
-                        .IsUnique();
 
                     b.ToTable("Syllabus");
                 });
@@ -331,21 +334,13 @@ namespace UniversityApiBackend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Syllabus", b =>
-                {
-                    b.HasOne("UniversityApiBackend.Models.DataModels.Course", "Course")
-                        .WithOne("Syllabus")
-                        .HasForeignKey("UniversityApiBackend.Models.DataModels.Syllabus", "CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("UniversityApiBackend.Models.DataModels.Course", b =>
                 {
-                    b.Navigation("Syllabus")
-                        .IsRequired();
+                    b.HasOne("UniversityApiBackend.Models.DataModels.Syllabus", "Syllabus")
+                        .WithMany()
+                        .HasForeignKey("SyllabusId");
+
+                    b.Navigation("Syllabus");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniversityApiBackend.DataAccess;
 using UniversityApiBackend.Models.DataModels;
@@ -15,13 +10,12 @@ namespace UniversityApiBackend.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        private readonly UniversityDBContext _context;
-        // Service
+        private readonly UniversityDBContext _dbContext;
         private readonly IStudentsService _studentsService;
 
-        public StudentsController(UniversityDBContext context, IStudentsService studentsService)
+        public StudentsController(UniversityDBContext dbContext, IStudentsService studentsService)
         {
-            _context = context;
+            _dbContext = dbContext;
             _studentsService = studentsService;
         }
 
@@ -29,22 +23,22 @@ namespace UniversityApiBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
         {
-          if (_context.Students == null)
+          if (_dbContext.Students == null)
           {
               return NotFound();
           }
-            return await _context.Students.ToListAsync();
+            return await _dbContext.Students.ToListAsync();
         }
 
         // GET: api/Students/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudent(int id)
         {
-          if (_context.Students == null)
+          if (_dbContext.Students == null)
           {
               return NotFound();
           }
-            var student = await _context.Students.FindAsync(id);
+            var student = await _dbContext.Students.FindAsync(id);
 
             if (student == null)
             {
@@ -52,6 +46,55 @@ namespace UniversityApiBackend.Controllers
             }
 
             return student;
+        }
+
+        // GET api/Students/With-Courses
+        [HttpGet("With-Courses")]
+        public async Task<ActionResult<Student>> GetStudentsWithCourses()
+        {
+            var students = await _studentsService.GetStudentsWithCoursesAsync();
+
+            if (students == null)
+            {
+                return NotFound();
+            }
+            return Ok(students);
+        }
+        
+        // GET api/Students/With-No-Courses
+        [HttpGet("With-No-Courses")]
+        public async Task<ActionResult<Student>> GetStudentsWithNoCourses()
+        {
+            var students = await _studentsService.GetStudentsWithNoCoursesAsync();
+
+            if (students == null)
+            {
+                return NotFound();
+            }
+            return Ok(students);
+        }
+        
+        // GET api/Students/5/Courses
+        [HttpGet("{id}/Courses")]
+        public async Task<ActionResult<Student>> GetStudentCourses(int id)
+        {
+            if (_dbContext.Students == null)
+            {
+                return NotFound();
+            }
+
+            if (!StudentExists(id))
+            {
+                return NotFound();
+            }
+
+            var courses = await _studentsService.GetStudentCoursesAsync(id);
+
+            if (courses == null)
+            {
+                return NotFound();
+            }
+            return Ok(courses);
         }
 
         // PUT: api/Students/5
@@ -64,11 +107,11 @@ namespace UniversityApiBackend.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(student).State = EntityState.Modified;
+            _dbContext.Entry(student).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -90,12 +133,12 @@ namespace UniversityApiBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
-          if (_context.Students == null)
+          if (_dbContext.Students == null)
           {
               return Problem("Entity set 'UniversityDBContext.Students'  is null.");
           }
-            _context.Students.Add(student);
-            await _context.SaveChangesAsync();
+            _dbContext.Students.Add(student);
+            await _dbContext.SaveChangesAsync();
 
             return CreatedAtAction("GetStudent", new { id = student.Id }, student);
         }
@@ -104,25 +147,25 @@ namespace UniversityApiBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
         {
-            if (_context.Students == null)
+            if (_dbContext.Students == null)
             {
                 return NotFound();
             }
-            var student = await _context.Students.FindAsync(id);
+            var student = await _dbContext.Students.FindAsync(id);
             if (student == null)
             {
                 return NotFound();
             }
 
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
+            _dbContext.Students.Remove(student);
+            await _dbContext.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool StudentExists(int id)
         {
-            return (_context.Students?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_dbContext.Students?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
