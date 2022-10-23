@@ -4,8 +4,8 @@ namespace UniversityApiBackend.Services
 {
     public interface IStudentsService
     {
-        IEnumerable<Student> GetStudentsWithCourses();
-        IEnumerable<Student> GetStudentsWithNoCourses();
-        IEnumerable<Student> GetStudentsByCourse(int courseId);
+        Task<IEnumerable<Student>> GetStudentsWithCoursesAsync();
+        Task<IEnumerable<Student>> GetStudentsWithNoCoursesAsync();
+        Task<IEnumerable<Course>> GetStudentCoursesAsync(int studentId);
     }
 }

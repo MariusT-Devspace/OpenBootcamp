@@ -12,6 +12,6 @@
         public string? ValidAudience { get; set; }
 
         public bool RequireExpirationTime { get; set; }
-        public bool ValidateLifetime { get; set; } = true;
+        public bool ValidateLifeTime { get; set; } = true;
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniversityApiBackend.DataAccess;
 using UniversityApiBackend.Models.DataModels;
@@ -14,33 +9,34 @@ namespace UniversityApiBackend.Controllers
     [ApiController]
     public class SyllabusController : ControllerBase
     {
-        private readonly UniversityDBContext _context;
+        private readonly UniversityDBContext _dbContext;
 
-        public SyllabusController(UniversityDBContext context)
+        public SyllabusController(UniversityDBContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
 
         // GET: api/Syllabus
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Syllabus>>> GetSyllabus()
         {
-          if (_context.Syllabus == null)
-          {
-              return NotFound();
-          }
-            return await _context.Syllabus.ToListAsync();
+            if (_dbContext.Syllabus == null)
+            {
+                return NotFound();
+            }
+            return await _dbContext.Syllabus.ToListAsync();
         }
 
         // GET: api/Syllabus/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Syllabus>> GetSyllabus(int id)
-        {
-          if (_context.Syllabus == null)
-          {
-              return NotFound();
-          }
-            var syllabus = await _context.Syllabus.FindAsync(id);
+        {   
+            if (_dbContext.Syllabus == null)
+            {
+                return NotFound();
+            }
+
+            var syllabus = await _dbContext.Syllabus.FindAsync(id);
 
             if (syllabus == null)
             {
@@ -60,11 +56,11 @@ namespace UniversityApiBackend.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(syllabus).State = EntityState.Modified;
+            _dbContext.Entry(syllabus).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -86,12 +82,12 @@ namespace UniversityApiBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Syllabus>> PostSyllabus(Syllabus syllabus)
         {
-          if (_context.Syllabus == null)
-          {
-              return Problem("Entity set 'UniversityDBContext.Syllabus'  is null.");
-          }
-            _context.Syllabus.Add(syllabus);
-            await _context.SaveChangesAsync();
+            if (_dbContext.Syllabus == null)
+            {
+                return NotFound();
+            }
+            _dbContext.Syllabus.Add(syllabus);
+            await _dbContext.SaveChangesAsync();
 
             return CreatedAtAction("GetSyllabus", new { id = syllabus.Id }, syllabus);
         }
@@ -100,25 +96,26 @@ namespace UniversityApiBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSyllabus(int id)
         {
-            if (_context.Syllabus == null)
+            if (_dbContext.Syllabus == null)
             {
                 return NotFound();
             }
-            var syllabus = await _context.Syllabus.FindAsync(id);
+
+            var syllabus = await _dbContext.Syllabus.FindAsync(id);
             if (syllabus == null)
             {
                 return NotFound();
             }
 
-            _context.Syllabus.Remove(syllabus);
-            await _context.SaveChangesAsync();
+            _dbContext.Syllabus.Remove(syllabus);
+            await _dbContext.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool SyllabusExists(int id)
         {
-            return (_context.Syllabus?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_dbContext.Syllabus?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

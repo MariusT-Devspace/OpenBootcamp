@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Policy;
 using UniversityApiBackend.Helpers;
 using UniversityApiBackend.Models.DataModels;
 
@@ -18,49 +21,48 @@ namespace UniversityApiBackend.Controllers
             _jwtSettings = jwtSettings;
         }
 
-        private IEnumerable<User> Logins = new List<User>
+        private IEnumerable<User> Logins = new List<User>()
         {
             new User()
             {
                 Id = 1,
-                Email = "martín@imaginagroup.com",
-                Name = "Admin",
+                Email = "martin@imaginagroup.com",
+                UserName = "Admin",
                 Password = "Admin"
             },
             new User()
             {
                 Id = 2,
                 Email = "pepe@imaginagroup.com",
-                Name = "User1",
+                UserName = "User1",
                 Password = "pepe"
             }
         };
 
         [HttpPost]
-        public IActionResult GetToken(UserLogins userLogin)
+        public IActionResult GetToken(UserLogin userLogin)
         {
             try
             {
-                var Token = new UserTokens();
-                var Valid = Logins.Any(user => user.Name.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
-                
+                var Token = new UserToken();
+                var Valid = Logins.Any(user => user.UserName.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
+
                 if (Valid)
                 {
-                    var user = Logins.FirstOrDefault(user => user.Name.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
-
-                    Token = JwtHelpers.GenTokenKey(new UserTokens()
+                    var user = Logins.FirstOrDefault(user => user.UserName.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
+                    Token = JwtHelpers.GenTokenKey(new UserToken()
                     {
-                        UserName = user.Name,
+                        UserName = user.UserName,
                         EmailId = user.Email,
-                        Id = user.Id,
+                        Id = user.Id, 
                         GuidId = Guid.NewGuid()
                     }, _jwtSettings);
+                    return Ok(Token);
                 }
                 else
                 {
-                    return BadRequest("Wrong Password");
+                    return BadRequest("Wrong username or password");
                 }
-                return Ok(Token);
             }
             catch (Exception ex)
             {
@@ -70,7 +72,7 @@ namespace UniversityApiBackend.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
-        public IActionResult GetUserList()
+        public IActionResult GetUsers()
         {
             return Ok(Logins);
         }

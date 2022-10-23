@@ -1,6 +1,6 @@
 ﻿namespace UniversityApiBackend.Models.DataModels
 {
-    public class UserTokens
+    public class UserToken
     {
         public int Id { get; set; }
         public string Token { get; set; }
@@ -9,8 +9,6 @@
         public string RefreshToken { get; set; }
         public string EmailId { get; set; }
         public Guid GuidId { get; set; }
-        public DateTime ExpiredDateTime { get; set; }
-
-
+        public DateTime ExpiredTime { get; set; }
     }
 }

@@ -35,7 +35,8 @@ namespace UniversityApiBackend.Models.DataModels
         [Required]
         public ICollection<Student> Students { get; set; } = new List<Student>();
         
-        [Required]
-        public virtual Syllabus Syllabus { get; set; } = new Syllabus();
+        [ForeignKey("Syllabus")]
+        public int? SyllabusId { get; set; }
+        public virtual Syllabus? Syllabus { get; set; }
     }
 }

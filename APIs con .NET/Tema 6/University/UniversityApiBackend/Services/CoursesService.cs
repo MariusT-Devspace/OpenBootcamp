@@ -1,22 +1,36 @@
-﻿using UniversityApiBackend.Models.DataModels;
+﻿using Microsoft.EntityFrameworkCore;
+using UniversityApiBackend.DataAccess;
+using UniversityApiBackend.Models.DataModels;
 
 namespace UniversityApiBackend.Services
 {
     public class CoursesService : ICoursesService
     {
-        public IEnumerable<Course> GetCoursesByCategory(string categoryName)
+        private readonly UniversityDBContext _dBContext;
+        public CoursesService(UniversityDBContext dBContext)
         {
-            throw new NotImplementedException();
+            _dBContext = dBContext;
         }
 
-        public IEnumerable<Course> GetCoursesWithNoSyllabus()
+        public async Task<IEnumerable<Course>> GetCoursesWithNoSyllabusAsync()
         {
-            throw new NotImplementedException();
+           return await (from course in _dBContext.Courses
+                  where course.Syllabus == null
+                  select course).ToListAsync<Course>();
         }
 
-        public IEnumerable<Course> GetStudentCourses(int studentId)
+        public async Task<Syllabus> GetCourseSyllabusAsync(int courseId)
         {
-            throw new NotImplementedException();
+            return await (from course in _dBContext.Courses
+                          where course.Id == courseId
+                          select course.Syllabus).SingleAsync();
+        }
+
+        public async Task<IEnumerable<Student>> GetCourseStudentsAsync(int courseId)
+        {
+            return await (from course in _dBContext.Courses
+                          where course.Id == courseId
+                          select course.Students).SingleAsync<IEnumerable<Student>>();
         }
     }
 }
