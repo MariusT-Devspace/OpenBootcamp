@@ -6,7 +6,7 @@ namespace UniversityApiBackend.Models.DataModels
     {
         public enum UserRole
         {
-            Admin,
+            Administrator,
             User
         }
 

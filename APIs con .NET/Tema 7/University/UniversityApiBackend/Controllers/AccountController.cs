@@ -45,7 +45,8 @@ namespace UniversityApiBackend.Controllers
                         Username = user!.Username,
                         EmailId = user.Email,
                         Id = user.Id, 
-                        GuidId = Guid.NewGuid()
+                        GuidId = Guid.NewGuid(),
+                        Role = user.Role.ToString()
                     }, _jwtSettings);
                     return Ok(Token);
                 }
